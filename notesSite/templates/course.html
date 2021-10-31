@@ -1,10 +1,56 @@
-{% extends 'base_template.html'%} {% block title %} Select Your Course {% endblock title %} {% block body %}
+{% extends 'base_template.html'%} {% block title %} Select Your Course {% endblock title %} 
+{% block style %} 
+.my-togel-button{
+     background-color:
+      blue; color: white; 
+      font-weight: bold;
+       } 
 
-{% block style %}
+       .my-dropworn-list{
+           margin:2px;
+           background-color:green;
+           border-radius:5px;
+       }
+       .my-dropworn-list>ul>li>.my-dropdown-item{
+               border-bottom: solid bisque 2px;
+               color:white;
+               font-weight: bold;
+               
+               padding-left:2rem;
+               
+                   
+}
 
-{% endblock style %}
+        .my-dropworn-list>ul{
+           margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    
+       }
+   
+{% endblock style %} 
+
+<script>
+ {% block script %}
+    function togel_dropdown(){
+       var togeler =  document.getElementById("course-dropdown");
+
+    if(togeler.style.display == "block"){
+        togeler.style.display = "none";
+    }
+
+    else{
+        togeler.style.display = "block";
+    }
+       
+    }
+ 
+ {% endblock script %}
+ </script>
+{% block body %}
 <div class="my-main">
-    {% comment %} <div class="my-rows">
+    {% comment %}
+    <div class="my-rows">
         <div class="my-cols">
             <h4>Study Material</h3>
                 <p>You can view and download notes from here</p>
@@ -21,7 +67,20 @@
         </div>
     </div> {% endcomment %}
 
+    <div class="my-dropdown">
+        <button class="my-togel-button btn" onclick="togel_dropdown()" for="course-dropdown">
+            Select Course
+        </button>
+        <div class="my-dropworn-list" id="course-dropdown" style="display: none;">
+            <ul type="none" >
+                <li><div class="my-dropdown-item" >BCA</div></li>
+                <li><div class="my-dropdown-item">BBA</div></li>
+                <li><div class="my-dropdown-item">BJMC</div></li>
+                <li><div class="my-dropdown-item">ID</div></li>
+            </ul>
+        </div>
 
+    </div>
 
 </div>
 {% endblock body %}
