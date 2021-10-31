@@ -27,6 +27,31 @@
     padding: 0;
     
        }
+
+       .option{
+           background-color: blue;
+    font-weight: bold;
+    color: white;
+    padding: 0.5;
+    width: 131px;
+    height: 37px;
+    border-radius: 4px;
+    padding-left: 31px;
+       }
+
+       .my-btn{
+            background-color: green;
+    font-weight: bold;
+    color: white;
+    padding: 0.5;
+    width: 131px;
+    height: 37px;
+    border-radius: 4px;
+       }
+
+      .notes-list{
+          display:flex;
+      }
    
 {% endblock style %} 
 
@@ -35,19 +60,27 @@
     function togel_dropdown(){
        var togeler =  document.getElementById("course-dropdown");
 
-    if(togeler.style.display == "block"){
-        togeler.style.display = "none";
-    }
+        if(togeler.style.display == "block"){
+            togeler.style.display = "none";
+        }
 
-    else{
-        togeler.style.display = "block";
-    }
+        else{
+            togeler.style.display = "block";
+        }
        
     }
+
+    
+
+
+    
+
  
  {% endblock script %}
  </script>
+ {% load static %}
 {% block body %}
+
 <div class="my-main">
     {% comment %}
     <div class="my-rows">
@@ -67,7 +100,7 @@
         </div>
     </div> {% endcomment %}
 
-    <div class="my-dropdown">
+    {% comment %} <div class="my-dropdown">
         <button class="my-togel-button btn" onclick="togel_dropdown()" for="course-dropdown">
             Select Course
         </button>
@@ -79,8 +112,55 @@
                 <li><div class="my-dropdown-item">ID</div></li>
             </ul>
         </div>
+    </div>
+     {% endcomment %}
+
+     {% comment %} <form action="/action_page/">
+        <input type="text" placeholder= "Enter The Study Material Name"  > <input type="submit" value="Search" class="my-btn">
+
+     </form> {% endcomment %}
+
+     <h3> All Notes From Your College</h3><hr>
+    <form action="/action_page/">
+        <label for="course">Select Course : </label>
+        <select name="course" id="course" class="option" onchange="optionfun()">
+            <option value="select">select</option>
+            <option value="BCA" >BCA</option>
+            <option value="BJMC">BJMC</option>
+            <option value="ID" >ID</option>
+            <option value="HM" >HM</option>
+        </select>
+
+       
+            <label for="sem">Select Seemester : </label>
+            <select name="sem" id="sem" class="option" onchange="optionfun()">
+                <option value="select">select</option>
+                <option value="first" >First</option>
+                <option value="secound">Secound</option>
+                <option value="third" >Third</option>
+                <option value="fourth" >Fourth</option>
+                <option value="fifth" >Fifth</option>
+                <option value="six" >Six</option>
+
+
+            </select>
+      
+    
+        <input type="submit" value="Go!" class="my-btn">
+    </form>
+
+    <div class="notes-list">
+    {% for i in studyMaterial_data %}
+        <div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">
+      <div class="card-body">
+        <h5 class="card-title">{{i.material_title}}</h5>
+        <p class="card-text">{{i.material_detail}}</p>
+        <a href="{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
+      </div>
+    </div>
+    {% endfor %}
 
     </div>
-
+    
 </div>
 {% endblock body %}
