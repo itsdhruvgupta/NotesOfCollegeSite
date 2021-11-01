@@ -51,6 +51,7 @@
 
       .notes-list{
           display:flex;
+          flex-wrap : wrap;
       }
 
 {% endblock style %}
@@ -80,6 +81,7 @@
  </script>
  {% load static %}
 {% block body %}
+
 
 <div class="my-main">
     {% comment %}
@@ -121,12 +123,13 @@
      </form> {% endcomment %}
 
      <h3> All Notes From Your College</h3><hr>
-    <form action="/action_page/">
+    <form action="/notes/" method="POST">
+    {% csrf_token %}
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" onchange="optionfun()">
             <option value="select">select</option>
             <option value="BCA" >BCA</option>
-            <option value="BJMC">BJMC</option>
+            <option value="BBA">BBA</option>
             <option value="ID" >ID</option>
             <option value="HM" >HM</option>
         </select>
@@ -154,7 +157,10 @@
         <div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">
       <div class="card-body">
         <h5 class="card-title">{{i.material_title}}</h5>
-        <p class="card-text">{{i.material_detail}}</p>
+        <p class="" >{{i.material_detail}}</p>
+        <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}}</p>
+        <p class="">{{i.uploaded_time}}</p>
+
         <a href="{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
       </div>
     </div>
