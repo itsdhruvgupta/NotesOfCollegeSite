@@ -1,10 +1,10 @@
-{% extends 'base_template.html'%} {% block title %} Select Your Course {% endblock title %} 
-{% block style %} 
+{% extends 'base_template.html'%} {% block title %} Select Your Course {% endblock title %}
+{% block style %}
 .my-togel-button{
      background-color:
-      blue; color: white; 
+      blue; color: white;
       font-weight: bold;
-       } 
+       }
 
        .my-dropworn-list{
            margin:2px;
@@ -15,17 +15,17 @@
                border-bottom: solid bisque 2px;
                color:white;
                font-weight: bold;
-               
+
                padding-left:2rem;
-               
-                   
+
+
 }
 
         .my-dropworn-list>ul{
            margin-top: 0;
     margin-bottom: 0;
     padding: 0;
-    
+
        }
 
        .option{
@@ -52,8 +52,8 @@
       .notes-list{
           display:flex;
       }
-   
-{% endblock style %} 
+
+{% endblock style %}
 
 <script>
  {% block script %}
@@ -67,15 +67,15 @@
         else{
             togeler.style.display = "block";
         }
-       
+
     }
 
-    
 
 
-    
 
- 
+
+
+
  {% endblock script %}
  </script>
  {% load static %}
@@ -122,7 +122,7 @@
 
      <h3> All Notes From Your College</h3><hr>
     <form action="/action_page/">
-        <label for="course">Select Course : </label>
+        <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" onchange="optionfun()">
             <option value="select">select</option>
             <option value="BCA" >BCA</option>
@@ -131,21 +131,21 @@
             <option value="HM" >HM</option>
         </select>
 
-       
-            <label for="sem">Select Seemester : </label>
+
+            <label for="sem">Select Semester : </label>
             <select name="sem" id="sem" class="option" onchange="optionfun()">
                 <option value="select">select</option>
-                <option value="first" >First</option>
-                <option value="secound">Secound</option>
-                <option value="third" >Third</option>
-                <option value="fourth" >Fourth</option>
-                <option value="fifth" >Fifth</option>
-                <option value="six" >Six</option>
+                <option value="first" >I</option>
+                <option value="secound">II</option>
+                <option value="third" >III</option>
+                <option value="fourth" >IV</option>
+                <option value="fifth" >V</option>
+                <option value="six" >VI</option>
 
 
             </select>
-      
-    
+
+
         <input type="submit" value="Go!" class="my-btn">
     </form>
 
@@ -161,6 +161,6 @@
     {% endfor %}
 
     </div>
-    
+
 </div>
 {% endblock body %}
