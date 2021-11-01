@@ -19,4 +19,5 @@ from student import views
 urlpatterns = [
     path("",views.index, name = "home"),
     path("select-course/",views.select_course, name = "select_course"),
+    path("college-activites/",views.college_activites, name = "college-activites"),
 ]
