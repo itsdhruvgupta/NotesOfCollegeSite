@@ -3,7 +3,7 @@ from student.models import studyMaterial
 def index(request):
     return render(request,'index.html')
 
-def notes(request):
+def study_materials(request):
     if request.method == 'POST':
         select_course = request.POST.get('course')
         select_sem = request.POST.get('sem')
@@ -30,7 +30,7 @@ def notes(request):
         dict = {'studyMaterial_data':studyMaterial_data}
     
     
-    return render(request,'notes.html',dict)
+    return render(request,'Study-Materials.html',dict)
 
 def college_activites(request):
     

@@ -1,4 +1,6 @@
 {% extends 'base_template.html'%} {% block title %} Select Your Course {% endblock title %}
+{% load static %}
+
 {% block style %}
 .my-togel-button{
      background-color:
@@ -79,7 +81,6 @@
 
  {% endblock script %}
  </script>
- {% load static %}
 {% block body %}
 
 
@@ -123,7 +124,7 @@
      </form> {% endcomment %}
 
      <h3> All Notes From Your College</h3><hr>
-    <form action="/notes/" method="POST">
+    <form action="/study-materials/" method="POST">
     {% csrf_token %}
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" onchange="optionfun()">
@@ -161,7 +162,7 @@
         <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}}</p>
         <p class="">{{i.uploaded_time}}</p>
 
-        <a href="{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
+        <a href= "{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
       </div>
     </div>
     {% endfor %}
