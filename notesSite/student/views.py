@@ -35,3 +35,8 @@ def study_materials(request):
 def college_activites(request):
     
     return render(request,'college-activities.html')
+
+
+def college_activites(request):
+    
+    return render(request,'college-activities.html')

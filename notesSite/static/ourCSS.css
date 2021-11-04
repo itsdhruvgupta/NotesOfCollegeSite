@@ -1,0 +1,21 @@
+.flex-container {
+    display: flex;
+    height: auto;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    margin-left: 50px;
+    margin-right: 50px;
+    border-bottom: 10px solid #8f94fb;
+    margin-top: 50px;
+    height: auto;
+}
+
+.flex-item {
+    width: auto;
+    font-family: sans-serif;
+    height: auto;
+    font-size: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
