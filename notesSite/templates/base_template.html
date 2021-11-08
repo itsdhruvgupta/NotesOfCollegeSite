@@ -20,17 +20,32 @@
 
     {% block head %}{% endblock head %}
     <script>
-        { % block script %
-        }
+        {% block script %}
 
-        { % endblock script %
-        }
+        {% endblock script %}
     </script>
 
 
     <style>
        {% block style %}{% endblock style %}
         
+        @media(max-width:500px){
+            *{
+                font-size:small;
+            }
+            
+        }
+
+        @media(max-width:800px){
+            .my-form>*{
+            display:flex;
+            flex-direction:cols;
+        }
+        }
+
+        .my-form>*{
+            margin:3px;
+        }
         
         .my-main {
             padding: 1rem;
@@ -124,6 +139,13 @@
                             </a>
                             <span class="tooltip">Study Materials</span>
                         </li>
+                        <li>
+                            <a href="/notice-board/">
+                                <i class='bx bx-chat'></i>
+                                <span class="links_name">Notice Board</span>
+                            </a>
+                            <span class="tooltip">Notice Board</span>
+                        </li>
                       
                         <li>
                             <a href="#">
@@ -178,10 +200,12 @@
             menuBtnChange();
         });
 
+        /*
         searchBtn.addEventListener("click", () => {
             sidebar.classList.toggle("open");
             menuBtnChange();
         });
+        */
 
         function menuBtnChange() {
             if (sidebar.classList.contains("open")) {

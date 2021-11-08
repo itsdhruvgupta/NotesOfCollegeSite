@@ -37,6 +37,6 @@ def college_activites(request):
     return render(request,'college-activities.html')
 
 
-def college_activites(request):
+def notice_board(request):
     
-    return render(request,'college-activities.html')
+    return render(request,'notice_board.html')
