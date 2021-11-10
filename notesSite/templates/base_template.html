@@ -9,7 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href='{% static "side.css"%}'>
-    <link rel="stylesheet" href='{% static "ourCSS.css"%}'>
 
     <!-- Bootstrap CSS -->
 
@@ -20,6 +19,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    
     <title> {% block title %} {% endblock title %}</title>
 
     {% block head %}{% endblock head %}
@@ -114,7 +114,7 @@
 
 <body>
 <nav class="navbar navbar-dark " style="background-color:#11101D;">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#"><img src='{% static "images/logo.png" %}' width="75px"></a>
 </nav>
 
     <div class="container-fluid ">
@@ -122,9 +122,9 @@
         <div class="row ">
         
             <div class="my-flex-row ">
-                <div class="sidebar" style="    position: unset; height:170%">
+                <div class="sidebar" style="position: unset; ">
                     <div class="logo-details">
-                        <div class="logo_name">NotesLab</div>
+                        <div class="logo_name">KlickNotes</div>
                         <i class='bx bx-menu' id="btn"></i>
                     </div>
                     <ul class="nav-list">
@@ -138,21 +138,21 @@
 
                         <li>
                             <a href="/study-materials/">
-                                <i class='bx bx-chat'></i>
+                                <i class='bx bxs-book'></i>
                                 <span class="links_name">Study Materials</span>
                             </a>
                             <span class="tooltip">Study Materials</span>
                         </li>
                         <li>
                             <a href="/notice-board/">
-                                <i class='bx bx-chat'></i>
+                                <i class='bx bx-notification'></i>
                                 <span class="links_name">Notice Board</span>
                             </a>
                             <span class="tooltip">Notice Board</span>
                         </li>
                       
                         <li>
-                            <a href="#">
+                            <a href="/result/">
                                 <i class='bx bx-pie-chart-alt-2'></i>
                                 <span class="links_name">Results</span>
                             </a>
@@ -161,7 +161,7 @@
 
                         <li>
                             <a href="#">
-                                <i class='bx bx-user'></i>
+                                <i class='bx bx-bug'></i>
                                 <span class="links_name">Report Bugs</span>
                             </a>
                             <span class="tooltip">Report Bugs</span>
