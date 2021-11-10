@@ -6,7 +6,6 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href='{% static "side.css"%}'>
 
@@ -58,13 +57,15 @@
         .my-rows {
             display: flex;
             flex-direction: row;
-            justify-content: center;
+            flex-wrap:wrap;
+            justify-content: flex-start;
             margin-right: 10px;
             margin-left: 10px;
+            width:100%;
         }
         
         .my-cols {
-            width: 30%;
+            width: 29%;
             border: solid black 1px;
             box-shadow: 5px 5px 8px #4CA1AF;
             margin: 2%;
@@ -117,10 +118,7 @@
   <a class="navbar-brand" href="#"><img src='{% static "images/logo.png" %}' width="75px"></a>
 </nav>
 
-    <div class="container-fluid ">
 
-        <div class="row ">
-        
             <div class="my-flex-row ">
                 <div class="sidebar" style="position: unset; ">
                     <div class="logo-details">
@@ -181,16 +179,16 @@
                 </div>
 
 
-                {% block my-navbar %} {% endblock my-navbar %} {% block body %} {% endblock body %}
+                 {% block body %} {% endblock body %}
 
-            </div>
-
-
+            
 
 
 
 
-        </div>
+
+
+        
     </div>
 
 
