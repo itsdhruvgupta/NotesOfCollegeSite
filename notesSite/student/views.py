@@ -1,7 +1,14 @@
 from django.shortcuts import redirect, render , HttpResponse
-from student.models import studyMaterial, result
+from student.models import studyMaterial, result, notice
+
+
 def index(request):
-    return render(request,'index.html')
+
+    studyMaterial_data = studyMaterial.objects.all()[:3]
+    result_data = result.objects.all()[:4]
+    notice_data = notice.objects.all()[:4]
+    dict = {'studyMaterial_data':studyMaterial_data,'result_data':result_data,'notice_data':notice_data}
+    return render(request,'index.html',dict)
 
 def study_materials(request):
     if request.method == 'POST':
@@ -67,5 +74,7 @@ def college_activites(request):
 
 
 def notice_board(request):
-    
-    return render(request,'notice_board.html')
+    notice_data = notice.objects.all()
+    dict = {"notice_data":notice_data}
+
+    return render(request,'notice_board.html',dict)

@@ -35,36 +35,20 @@
 <div class="my-flex-cols">
     <center><h1 style="font-weight:bolder; color:11101D;"> Notice Board</h1></center>
     <div class="my-rows">
+    {% for i in notice_data %}
         <div class="card"  >
             <div class="card-body">
-                <h5 class="card-title" style="width:100%; background-color:#11101D;color:white; padding:0.5rem; border-radius:5px; ">Bus Timing Change</h5>
+                <h5 class="card-title" style="width:100%; background-color:#11101D;color:white; padding:0.5rem; border-radius:5px; ">{{i.notice_title}}</h5>
                 <img src="https://learnyourways.com/wp-content/uploads/2021/06/Notice-writing-for-school-camps-3.jpg" width="100%">
-                <p class=""> This notice is for bca 3rd sem</p>
-                <p class="">10/nov/2021 23:14</p>
+                <p class=""> {{i.result_detail}}</p>
+                <p class="">{{i.uploaded_time}}</p>
+                <p class="">For : {{i.related_dep}} Department </p>
+
 
             </div>
         </div>
-        
-        <div class="card"  >
-            <div class="card-body">
-                <h5 class="card-title" style="width:100%; background-color:#11101D;color:white; padding:0.5rem; border-radius:5px; ">Bus Timing Change</h5>
-                <img src="https://learnyourways.com/wp-content/uploads/2021/06/Notice-writing-for-school-camps-3.jpg" width="100%">
-                <p class=""> This notice is for bca 3rd sem</p>
-                <p class="">10/nov/2021 23:14</p>
-
-            </div>
-        </div>
-        
-        <div class="card"  >
-            <div class="card-body">
-                <h5 class="card-title" style="width:100%; background-color:#11101D;color:white; padding:0.5rem; border-radius:5px; ">Bus Timing Change</h5>
-                <img src="https://learnyourways.com/wp-content/uploads/2021/06/Notice-writing-for-school-camps-3.jpg" width="100%">
-                <p class=""> This notice is for bca 3rd sem</p>
-                <p class="">10/nov/2021 23:14</p>
-
-            </div>
-        </div>
-
+    
+    {% endfor%}
     </div>
 </div>
 

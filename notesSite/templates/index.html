@@ -4,22 +4,71 @@
  {% block body %}
 
 <div class="my-main">
-    <div class="my-rows">
 
-        <div class="my-cols" onclick="windoes.open('/select.course/')" style="cursor: pointer;">
-            <h4>Study Material</h3>
-                <p>You can view and download notes from here</p>
-        </div>
 
-        <div class="my-cols">
-            <h4>College Activites</h3>
-                <p>Look around Activites in your college</p>
-        </div>
+<h3> Recent Uploaded Notice From Your College</h3>
 
-        <div class="my-cols">
-            <h4>Result</h3>
-                <p>View and Download your results</p>
+  <div class="my-rows">
+  
+    {% for i in notice_data %}
+        <div class="card" style="width:36%;" >
+            <div class="card-body">
+                <h5 class="card-title" style="width:100%; background-color:#11101D;color:white; padding:0.5rem; border-radius:5px; ">{{i.notice_title}}</h5>
+                <img src="https://learnyourways.com/wp-content/uploads/2021/06/Notice-writing-for-school-camps-3.jpg" width="100%">
+                <p class=""> {{i.result_detail}}</p>
+                <p class="">{{i.uploaded_time}}</p>
+                <p class="">For : {{i.related_dep}} Department </p>
+
+
+            </div>
         </div>
+    
+    {% endfor%}
     </div>
+
+<h3> Recent Uploaded Notes From Your College</h3>
+
+   <div class="notes-list">
+        {% for i in studyMaterial_data %}
+        <div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">
+            <div class="card-body">
+                <h5 class="card-title">{{i.material_title}}</h5>
+                <p class="" >{{i.material_detail}}</p>
+                <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}}</p>
+                <p class="">{{i.uploaded_time}}</p>
+
+                <a href= "/{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
+            </div>
+        </div>
+        {% endfor %}
+  </div>
+  
+
+
+
+<h3> Recent Uploaded Result From Your College</h3>
+   <div class="notes-list">
+      
+      <div class="notes-list">
+      {% for i in result_data %}
+          <div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">
+        <div class="card-body">
+          <h5 class="card-title">{{i.result_title}}</h5>
+          <p class="" >{{i.result_detail}}</p>
+          <p class=""> Batch  : {{i.result_batch}} {{i.result_sem}} Semester</p>
+
+          <p class="">Uploaded By : {{i.uploaded_by}} {{i.uploader_course}}</p>
+          <p class="">{{i.uploaded_time}}</p>
+
+          <a href= "/{{i.result_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+
+
 </div>
+
 {% endblock body %}
