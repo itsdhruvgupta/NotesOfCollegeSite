@@ -16,10 +16,11 @@ Including another URLconf
 from django.urls import path
 from student import views
 
+
 urlpatterns = [
     path("",views.index, name = "home"),
-    path("study-materials/",views.study_materials, name = "study-materials"),
-    path("notice-board/",views.notice_board, name = "notice-board"),
-    path("result/",views.f_result, name = "result")
+    path("study-materials",views.study_materials, name = "study-materials"),
+    path("notice-board",views.notice_board, name = "notice-board"),
+    path("result",views.f_result, name = "result")
 
 ]

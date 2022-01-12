@@ -121,7 +121,7 @@
      </form> {% endcomment %}
 
      <h3> All Notes From Your College</h3><hr>
-    <form action="/study-materials/" method="POST" class="my-form">
+    <form action="/study-materials" method="POST" class="my-form">
     {% csrf_token %}
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" onchange="optionfun()">
@@ -156,10 +156,10 @@
       <div class="card-body">
         <h5 class="card-title">{{i.material_title}}</h5>
         <p class="" >{{i.material_detail}}</p>
-        <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}}</p>
+        <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}} Semester</p>
         <p class="">{{i.uploaded_time}}</p>
 
-        <a href= "/{{i.uploader_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
+        <a href= "/{{i.upload_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
       </div>
     </div>
     {% endfor %}

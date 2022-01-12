@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render , HttpResponse
 from student.models import studyMaterial, result, notice
 
 
+
 def index(request):
 
     studyMaterial_data = studyMaterial.objects.all()[:3]

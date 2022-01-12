@@ -124,7 +124,7 @@
      </form> {% endcomment %}
 
      <h3> Select Your Course and Semester</h3><hr>
-    <form action="/result/" method="POST" class="my-form">
+    <form action="/result" method="POST" class="my-form">
     {% csrf_token %}
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" onchange="optionfun()">
