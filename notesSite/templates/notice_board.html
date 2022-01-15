@@ -32,8 +32,11 @@
 {% block body %}
 
 
+<div class="my-main">
 <div class="my-flex-cols">
-    <center><h1 style="font-weight:bolder; color:11101D;"> Notice Board</h1></center>
+    <h3> Notice Board</h3><hr>
+
+    
     <div class="my-rows">
     {% for i in notice_data %}
         <div class="card"  >
@@ -51,5 +54,5 @@
     {% endfor%}
     </div>
 </div>
-
+</div>
 {% endblock body %}

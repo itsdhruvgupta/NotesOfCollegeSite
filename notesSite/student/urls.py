@@ -19,8 +19,12 @@ from student import views
 
 urlpatterns = [
     path("",views.index, name = "home"),
-    path("study-materials",views.study_materials, name = "study-materials"),
+    path("study-materials",views.study_materials_page, name = "study_materials_page"),
+
     path("notice-board",views.notice_board, name = "notice-board"),
-    path("result",views.f_result, name = "result")
+    path("result",views.f_result, name = "result"),
+    path("bugs",views.f_bugs, name = "bugs"),
+    path("eventpage",views.eventpage, name = "eventpage"),
+    
 
 ]

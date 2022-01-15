@@ -82,49 +82,14 @@
 
 
 <div class="my-main">
-    {% comment %}
-    <div class="my-rows">
-        <div class="my-cols">
-            <h4>Study Material</h3>
-                <p>You can view and download notes from here</p>
-        </div>
-
-        <div class="my-cols">
-            <h4>College Activites</h3>
-                <p>Look around Activites in your college</p>
-        </div>
-
-        <div class="my-cols">
-            <h4>Result</h3>
-                <p>View and Download your results</p>
-        </div>
-    </div> {% endcomment %}
-
-    {% comment %} <div class="my-dropdown">
-        <button class="my-togel-button btn" onclick="togel_dropdown()" for="course-dropdown">
-            Select Course
-        </button>
-        <div class="my-dropworn-list" id="course-dropdown" style="display: none;">
-            <ul type="none" >
-                <li><div class="my-dropdown-item" >BCA</div></li>
-                <li><div class="my-dropdown-item">BBA</div></li>
-                <li><div class="my-dropdown-item">BJMC</div></li>
-                <li><div class="my-dropdown-item">ID</div></li>
-            </ul>
-        </div>
-    </div>
-     {% endcomment %}
-
-     {% comment %} <form action="/action_page/">
-        <input type="text" placeholder= "Enter The Study Material Name"  > <input type="submit" value="Search" class="my-btn">
-
-     </form> {% endcomment %}
+    
+   
 
      <h3> All Notes From Your College</h3><hr>
-    <form action="/study-materials" method="POST" class="my-form">
+    <div class="my-form">
     {% csrf_token %}
         <label for="course">Select Course: </label>
-        <select name="course" id="course" class="option" onchange="optionfun()">
+        <select name="course" id="course" class="option" >
             <option value="select">select</option>
             <option value="BCA" >BCA</option>
             <option value="BBA">BBA</option>
@@ -134,7 +99,7 @@
 
 
             <label for="sem">Select Semester : </label>
-            <select name="sem" id="sem" class="option" onchange="optionfun()">
+            <select name="sem" id="sem" class="option" >
                 <option value="select">select</option>
                 <option value="first" >I</option>
                 <option value="secound">II</option>
@@ -146,18 +111,17 @@
 
             </select>
 
+            <button value="Go!" class="my-btn get_notes"> Go! </button>
+        </div>
 
-        <input type="submit" value="Go!" class="my-btn">
-    </form>
-
-    <div class="notes-list">
+    <div class="notes-list" id="notes">
     {% for i in studyMaterial_data %}
         <div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">
       <div class="card-body">
         <h5 class="card-title">{{i.material_title}}</h5>
-        <p class="" >{{i.material_detail}}</p>
-        <p class="">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}} Semester</p>
-        <p class="">{{i.uploaded_time}}</p>
+        <p class="card-detail" >{{i.material_detail}}</p>
+        <p class="card_uploader">{{i.uploaded_by}} {{i.uploader_course}} {{i.uploader_sem}} Semester</p>
+        <p class="card-time">{{i.uploaded_time}}</p>
 
         <a href= "/{{i.upload_file}}" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>
       </div>
@@ -165,6 +129,52 @@
     {% endfor %}
 
     </div>
-
+   
 </div>
+
+<script>
+    $(document).ready(function(){
+      
+        $('.get_notes').click(function(){
+               
+            courses = $('#course').val();
+            seme  = $('#sem').val();
+            csrftoc = $("input[name=csrfmiddlewaretoken]").val();
+            $.ajax(
+                {
+                    type: "POST",
+                    url : "/study-materials",
+                    data:{
+                        sem : seme,
+                        course : courses,
+                        csrfmiddlewaretoken : csrftoc 
+                    },
+                    success : function(data){
+                        x = data.studyMaterial_data;
+                        document.getElementById("notes").innerHTML = "";
+                        if(x.length < 1 || x.length == null){
+                            document.getElementById("notes").innerHTML =  " Thid is not any notes uploaded by your college related to this suject";
+                        }
+                        else{
+                            for(i = 0; i<x.length;i++){
+                                document.getElementById("notes").innerHTML +=  '<br>' +
+
+                                '<div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">'+
+                                    '<div class="card-body">' +
+                                    '<h5 class="card-title"> ' + x[i].material_title + '</h5>'+
+                                    '<p class="card-detail" >' + x[i].material_detail + '</p>'+
+                                    '<p class="card_uploader"> ' + x[i].uploaded_by +" "+ x[i].uploader_course +" "+  x[i].uploader_sem +  ' Semester</p>'+
+                                    '<p class="card-time">' + x[i].uploaded_time + '</p>'+
+                                    '<a href= "/' + x[i].upload_file +'" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>'+
+                                    '</div>'+
+                                '</div>' ; 
+                            }
+                        }
+                    }
+                }
+            )
+        });
+    });
+</script>
 {% endblock body %}
+

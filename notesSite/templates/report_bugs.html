@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Report Bugs</title>
-	<link rel="stylesheet" type="text/css" href="style-bugs.css">
-</head>
-<body>
+
+{% extends 'base_template.html'%}
+{% load static %}
+{% block title %} NOTICE Board{% endblock title %}
+
+{% block head %}
+   
+  
+   
+{% endblock head %}
+{% block style %}
+.my-flex-cols{
+    
+    width:100%;
+}
+.card{
+    width: 36%;
+    margin: 20px;
+    border: #4CB8C4 solid 2px;
+}
+
+@media(max-width:600px){
+    .card{
+        width:80%;
+    }
+
+}
+
+
+
+{% endblock style %}
+
+{% block body %}
+
 	<h1>Bug Report Form</h1>
     <form>
 		Name<br>
@@ -28,5 +55,5 @@
 
         
      </form>
-</body>
-</html>
+
+     {% endblock body %}
