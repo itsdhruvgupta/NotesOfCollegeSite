@@ -63,3 +63,7 @@
     align-self: center;
     flex-direction: column;
 }
+
+.post>.buttom {
+    margin: 5px;
+}
