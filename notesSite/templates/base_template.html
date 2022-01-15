@@ -151,17 +151,17 @@
 </head>
 
 <body>
-<nav class="navbar navbar-dark " style="background-color:#11101D;">
-  <a class="navbar-brand" href="#"><img src='{% static "images/logo.png" %}' width="75px"></a>
+<nav class="navbar navbar-dark " style="background-color:#11101D; color:white;">
+  <a class="navbar-brand" href="#"><div style="font-size: larger;">KlickNotes</div></a>
 </nav>
 
 
             <div class="my-flex-row ">
-                <div class="sidebar" style="position: inherit; ">
-                    <div class="logo-details">
-                        <div class="logo_name">KlickNotes</div>
+                <div class="sidebar open" style="position: inherit; ">
+                
+                        
                         <i class='bx bx-menu' id="btn"></i>
-                    </div>
+                   
                     <ul class="nav-list">
                         <li>
                             <a href="/">
@@ -173,14 +173,14 @@
 
                         <li>
                             <a href="/study-materials">
-                                <i class='bx bxs-book'></i>
+                                <i class="bi bi-book"></i>
                                 <span class="links_name">Study Materials</span>
                             </a>
                             <span class="tooltip">Study Materials</span>
                         </li>
                         <li>
                             <a href="/notice-board">
-                                <i class='bx bx-notification'></i>
+                                <i class="bi bi-bell-fill"></i>
                                 <span class="links_name">Notice Board</span>
                             </a>
                             <span class="tooltip">Notice Board</span>
@@ -193,7 +193,13 @@
                             </a>
                             <span class="tooltip">Results</span>
                         </li>
-
+                        <li>
+                            <a href="/eventpage">
+                                <i class="bi bi-file-post"></i>
+                                <span class="links_name">Events</span>
+                            </a>
+                            <span class="tooltip">Events</span>
+                        </li>
                         <li>
                             <a href="/bugs">
                                 <i class='bx bx-bug'></i>
@@ -201,13 +207,7 @@
                             </a>
                             <span class="tooltip">Report Bugs</span>
                         </li>
-                        <li>
-                            <a href="/eventpage">
-                                <i class="bi bi-file-post-fill"></i>
-                                <span class="links_name">Events</span>
-                            </a>
-                            <span class="tooltip">Events</span>
-                        </li>
+                        
 
                         <li class="profile">
                             <div class="profile-details">
