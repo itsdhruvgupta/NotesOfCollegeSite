@@ -5,42 +5,64 @@
 {% block body %}
 <div class="my-main">
   
-    <div class="contain">
-
+    <div class="contain" id="feed">
+      {% csrf_token %}
+      {% for i in post_data %}
       <div class="post"> 
-        <p class="top"> User name  <i class="bi bi-three-dots-vertical"  style="font-size: 1.5rem; float:right;"></i></p>
+        <p class="top"> {{i.username}}  <i class="bi bi-three-dots-vertical"  style="font-size: 1.5rem; float:right;"></i></p>
         
-        <div class="img"><img src="https://media.contentapi.ea.com/content/dam/gin/images/2021/06/battlefield-2042-key-art.jpg.adapt.crop1x1.767p.jpg" id="Post-image"></div>
+        <div class="img"><img src="{{i.post}}" id="Post-image"></div>
     
       
-        <div class="buttom">
-          <i class="bi bi-star" style="font-size: 1.5rem; margin:1rem;"></i> 251 like
+        <div class="buttom" style="margin:1rem;">
+          <i class="bi bi-star" id="{{i.username}}" ><span class="likes" style="font-size:12px;"> {{i.likes}} </span> </i> 
+          <hr style="border-top:1px solid rgb(0 239 228 / 10%)">
+          <p style="font-size:13px;"> {{i.desc}} </p>
         </div>
         
       </div>
-
-      <div class="post"> 
-        <p class="top"> User name  <i class="bi bi-three-dots-vertical"  style="font-size: 1.5rem; float:right;"></i></p>
-        
-        <div class="img"><img src="https://i.guim.co.uk/img/media/7c2ab1a3e60e445caf0a4d3de302591e830e8f7f/0_0_3800_2280/master/3800.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=49331bc571155fab736c3ce179f31770" id="Post-image"></div>
-    
-      
-        <div class="buttom">
-          <i class="bi bi-star" style="font-size: 1.5rem; margin:1rem;"></i>10 like
-        </div>
-        
-      </div>
-
-      <div class="post"> 
-        <p class="top"> User name  <i class="bi bi-three-dots-vertical"  style="font-size: 1.5rem; float:right;"></i></p>
-        
-        <div class="img"><img src="https://i.ytimg.com/vi/uODKrZnGk7g/maxresdefault.jpg" id="Post-image"></div>
-    
-        <div class="buttom">
-          <i class="bi bi-star" style="font-size: 1.5rem; margin:1rem;"></i> 2 like
-        </div>
-      </div>
+      {% endfor %}
     
   
   </div>
+</div>
+<script>
+  var header = document.getElementById("feed");
+  var btns = header.getElementsByClassName("bi-star");
+  var like = header.getElementsByClassName("likes");
+  var csrf = $('[name="csrfmiddlewaretoken"]').val();
+  console.log(csrf)
+  for (var i = 0; i < btns.length; i++) {
+    console.log(i);
+    btns[i].addEventListener("click", function() {
+      if(this.classList[1].match("bi-star-fill")){
+        console.log("true")
+        this.classList.remove("bi-star-fill");
+        this.classList.add("bi-star");
+        var likecount = -1;
+        this.firstChild.innerHTML =  parseInt(this.firstChild.innerHTML) - 1;
+
+      }
+      else{
+        this.classList.remove("bi-star");
+        this.classList.add("bi-star-fill");
+        var likecount = 1;
+        this.firstChild.innerHTML =  parseInt(this.firstChild.innerHTML) + 1;
+      }
+      $.ajax({
+        type:'POST',
+        url:'/eventpage',
+        data: {
+          count : likecount,
+          user : this.id,
+          csrfmiddlewaretoken : csrf
+        },
+     
+          }
+      )
+    });
+  }
+  </script>
+  
     {% endblock body %}
+    

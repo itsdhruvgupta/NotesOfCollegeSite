@@ -82,12 +82,12 @@
 
 
 <div class="my-main">
-    
    
-
      <h3> All Notes From Your College</h3><hr>
-    <div class="my-form">
-    {% csrf_token %}
+    <form action="/study-materials" method="GET" class="my-form">
+    
+       
+  
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" >
             <option value="select">select</option>
@@ -111,8 +111,8 @@
 
             </select>
 
-            <button value="Go!" class="my-btn get_notes"> Go! </button>
-        </div>
+            <input type="submit" value="Go!" class="my-btn get_notes">
+        </form>
 
     <div class="notes-list" id="notes">
     {% for i in studyMaterial_data %}
@@ -132,49 +132,5 @@
    
 </div>
 
-<script>
-    $(document).ready(function(){
-      
-        $('.get_notes').click(function(){
-               
-            courses = $('#course').val();
-            seme  = $('#sem').val();
-            csrftoc = $("input[name=csrfmiddlewaretoken]").val();
-            $.ajax(
-                {
-                    type: "POST",
-                    url : "/study-materials",
-                    data:{
-                        sem : seme,
-                        course : courses,
-                        csrfmiddlewaretoken : csrftoc 
-                    },
-                    success : function(data){
-                        x = data.studyMaterial_data;
-                        document.getElementById("notes").innerHTML = "";
-                        if(x.length < 1 || x.length == null){
-                            document.getElementById("notes").innerHTML =  " Thid is not any notes uploaded by your college related to this suject";
-                        }
-                        else{
-                            for(i = 0; i<x.length;i++){
-                                document.getElementById("notes").innerHTML +=  '<br>' +
-
-                                '<div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">'+
-                                    '<div class="card-body">' +
-                                    '<h5 class="card-title"> ' + x[i].material_title + '</h5>'+
-                                    '<p class="card-detail" >' + x[i].material_detail + '</p>'+
-                                    '<p class="card_uploader"> ' + x[i].uploaded_by +" "+ x[i].uploader_course +" "+  x[i].uploader_sem +  ' Semester</p>'+
-                                    '<p class="card-time">' + x[i].uploaded_time + '</p>'+
-                                    '<a href= "/' + x[i].upload_file +'" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>'+
-                                    '</div>'+
-                                '</div>' ; 
-                            }
-                        }
-                    }
-                }
-            )
-        });
-    });
-</script>
 {% endblock body %}
 

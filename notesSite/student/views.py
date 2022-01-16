@@ -1,8 +1,11 @@
+from logging.config import valid_ident
+from math import fabs
+from optparse import Values
 from select import select
+import string
 from django.http import JsonResponse
 from django.shortcuts import redirect, render , HttpResponse
-from student.models import studyMaterial, result, notice
-
+from student.models import *
 
 
 def index(request):
@@ -15,11 +18,11 @@ def index(request):
 
 def study_materials_page(request):
     
-    if request.method == 'POST':
-        select_course = request.POST.get('course')
+    if request.method == 'GET':
+        select_course = request.GET.get('course','select')
         print(select_course)
 
-        select_sem = request.POST.get('sem')
+        select_sem = request.GET.get('sem','select')
         print(select_sem)
 
         if select_sem == 'select' or select_course == 'select':
@@ -27,72 +30,26 @@ def study_materials_page(request):
 
             if select_sem != 'select':
                 studyMaterial_data = studyMaterial.objects.filter(uploader_sem=select_sem).values()
-                data = list(studyMaterial_data)
-                print("sems")
-                dict = {'studyMaterial_data':data}
-                return JsonResponse(dict);
+                dict = {'studyMaterial_data':studyMaterial_data}
 
             if select_course != 'select':
                 studyMaterial_data = studyMaterial.objects.filter(uploader_course=select_course).values()
-                data = list(studyMaterial_data)
-                print("course")
-                dict = {'studyMaterial_data':data}
-                return JsonResponse(dict);
+                dict = {'studyMaterial_data':studyMaterial_data}
                 
             elif select_sem == 'select' and select_course == 'select':
-                
-                dict = {'studyMaterial_data':""}
-                return JsonResponse(dict);
+                studyMaterial_data = studyMaterial.objects.all()
+                dict = {'studyMaterial_data':studyMaterial_data}
+
 
         else:
             studyMaterial_data = studyMaterial.objects.filter(uploader_course=select_course ,uploader_sem = select_sem).values()
-            print(studyMaterial_data)
-
-            data = list(studyMaterial_data)
-            print(data)
-
-            print("all get")
-            dict = {'studyMaterial_data':data}
-            return JsonResponse(dict);
-
-
-    else:
-        studyMaterial_data = studyMaterial.objects.all()
-        dict = {'studyMaterial_data':studyMaterial_data}
+            dict = {'studyMaterial_data':studyMaterial_data}
 
     return render(request,'Study-Materials.html',dict)
 
 
 def f_result(request):
-    if request.method == 'POST':
-        select_course = request.POST.get('course')
-        select_sem = request.POST.get('sem')
-        print(select_course , select_sem)
-
-        if select_sem == 'select' or select_course == 'select':
-            if select_sem != 'select':
-                result_data = result.objects.filter(result_sem=select_sem).values()
-                data = list(result_data)
-                dict = {'result_data':data}
-                return JsonResponse(dict)
-
-            if select_course != 'select':
-                result_data = result.objects.filter(result_course=select_course).values()
-                data = list(result_data)
-                dict = {'result_data':data}
-                return JsonResponse(dict)
-                
-            elif select_sem == 'select' and select_course == 'select':
-                
-                dict = {'result_data':""}
-                return JsonResponse(dict)
-
-        else:
-            result_data = result.objects.filter(result_course=select_course ,result_sem = select_sem).values()
-            data = list(result_data)
-            dict = {'result_data':data}
-            return JsonResponse(dict)
-
+    
     if request.method == 'GET':
         select_sem = request.GET.get("sem","select")
         select_course = request.GET.get("course" ,"select")
@@ -118,7 +75,7 @@ def f_result(request):
             print("select_course")
             dict = {'result_data':result_data}
 
-        return render(request,'result.html',dict)
+    return render(request,'result.html',dict)
 
 def college_activites(request):
     
@@ -136,5 +93,25 @@ def f_bugs(request):
     return render(request,'report_bugs.html')
 
 def eventpage(request):
-    
-    return render(request,'Event-page.html')
+    if request.method == "GET":
+        post = post_data.objects.all()
+        dict = {"post_data":post}
+        return render(request,'Event-page.html',dict)
+    if request.method == "POST":
+        count = int(request.POST.get("count"))
+        user = request.POST.get("user")
+        post_data(username = user)
+        likes = post_data.objects.filter(username = user)
+        likes = (likes.values('likes'))
+        likes = (likes[0].get('likes'))
+        if(count == -1):
+            likes = likes - 1
+        else:
+            likes = (likes + 1)
+        p = post_data(likes = likes)
+        likes = post_data.objects.filter(username = user).update(likes = likes)
+        dict = {'msg' :'hello world'}
+        return JsonResponse(dict)
+        
+
+

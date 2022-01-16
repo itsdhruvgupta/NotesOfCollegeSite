@@ -88,8 +88,8 @@
    
 
      <h3> Select Your Course and Semester</h3><hr>
-    <div class="my-form">
-    {% csrf_token %}
+    <form action="/result" method="GET" class="my-form">
+   
         <label for="course">Select Course: </label>
         <select name="course" id="course" class="option" >
             <option value="select">select</option>
@@ -114,8 +114,8 @@
             </select>
 
 
-        <input type="button" value="Go!" class="my-btn" id="result_btn">
-    </div>
+        <input type="submit" value="Go!" class="my-btn" id="result_btn">
+        </form>
 
     <div class="notes-list" id="result" >
     {% for i in result_data %}
@@ -135,54 +135,5 @@
 
     </div>
 </div>
-<script>
-    $(document).ready(function(){
-      
-        $('#result_btn').click(function(){
-            console.log("btn click");
-               
-            courses = $('#course').val();
-            seme  = $('#sem').val();
-            csrftoc = $("input[name=csrfmiddlewaretoken]").val();
-            $.ajax(
-                {
-                    type: "POST",
-                    url : "/result",
-                    data:{
-                        sem : seme,
-                        course : courses,
-                        csrfmiddlewaretoken : csrftoc 
-                    },
-                    success : function(data){
-                        console.log("in the data");
-                        window.history.pushState("object or string", "Title", "/result?sem=" + seme + "&course=" + courses + "");
-                        x = data.result_data;
-                        console.log(x)
-                        document.getElementById("result").innerHTML = "";
-                        if(x.length < 1 || x.length == null){
-                            document.getElementById("result").innerHTML =  " Thid is not any result uploaded by your college related to this suject";
-                        }
-                        else{
-                            for(i = 0; i<x.length;i++){
-                                document.getElementById("result").innerHTML +=  '<br>' +
 
-                                '<div class="card" style="width: 18rem; margin: 20px; border: #4CB8C4 solid 2px;">'+
-                                    '<div class="card-body">' +
-                                    '<h5 class="card-title"> ' + x[i].result_title + '</h5>'+
-                                    '<p class="card-detail" >' + x[i].result_detail + '</p>'+
-                                    '<p class=""> Batch  : ' + x[i].result_batch + " " +  x[i].result_sem  + ' Semester</p>'+
-                                    
-                                    '<p class="card_uploader"> Uploaded by : ' + x[i].uploaded_by + '</p>'+
-                                    '<p class="card-time">' + x[i].uploaded_time + '</p>'+
-                                    '<a href= "/' + x[i].result_file +'" class="btn btn-primary" style="background-color: #4CB8C4;" >Open pdf</a>'+
-                                    '</div>'+
-                                '</div>' ; 
-                            }
-                        }
-                    }
-                }
-            )
-        });
-    });
-</script>
 {% endblock body %}

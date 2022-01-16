@@ -27,3 +27,12 @@ class notice(models.Model):
     result_detail = models.CharField(max_length=200)
     uploaded_time = models.CharField(max_length=50)
     related_dep = models.CharField(max_length=100)
+
+class post_data(models.Model):
+    username = models.CharField(max_length=100)
+    userprofile = models.ImageField()
+    uploaded_time = models.CharField(max_length=100)
+    post = models.CharField(max_length=200)
+    likes = models.IntegerField()
+    desc   = models.CharField(max_length= 1000)
+    comments = models.CharField(max_length=100) 
