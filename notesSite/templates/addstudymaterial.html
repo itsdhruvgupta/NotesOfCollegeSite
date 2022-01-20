@@ -1,0 +1,88 @@
+{% extends 'base_template.html'%}
+{% load static %}
+
+{% block body %}
+
+    <div class="my-form">
+  <form action="action_page.php" enctype="multipart/form-data">
+    <div class="row">
+      <div class="col-25">
+        <label for="resultTitle">Result Title</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="resultTitle" name="firstname" placeholder="Title">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="resultDetail">Detail</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="resultDetail" name="lastname" placeholder="Detail">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="time">Time</label>
+      </div>
+      <div class="col-75">
+        <input type="time" id="time" name="lastname" placeholder="">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="uploadedBy">Uploaded By</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="uploadedBy" name="lastname" placeholder="Uploaded By">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="course">Course</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="course" name="lastname" placeholder="Course">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="semester">Semester</label>
+      </div>
+      <div class="col-75">
+        <select id="semester" name="semester">
+          <option value="first">first</option>
+          <option value="second">Second</option>
+          <option value="third">Third</option>
+          <option value="fourth">Fourth</option>
+          <option value="fifth">Fifth</option>
+          <option value="sixth">Sixth</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="batch">Batch</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="batch" name="lastname" placeholder="Batch">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-25">
+        <label for="chooseFile">Choose file</label>
+      </div>
+      <div class="col-75">
+        <input type="file" id="chooseFile" name="lastname" placeholder="Choose file">
+      </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+      <input type="submit" value="Submit">
+    </div>
+  </form>
+</div>
+
+{% endblock body %}

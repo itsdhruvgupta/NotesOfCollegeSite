@@ -115,3 +115,6 @@ def eventpage(request):
         
 
 
+def addStudyMaterial(request):
+    
+    return render(request,'addstudymaterial.html')
