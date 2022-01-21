@@ -1,0 +1,39 @@
+
+#title{
+  text-align: center;
+  font-family: sans-serif;
+  margin-bottom: 5%;
+}
+
+.Question-div{
+  width: 80%;
+  border-radius: 0.5em;
+  position: relative;
+  text-align:justify;
+  font-family: sans-serif;
+  color: black;
+  background: #6FB98F;
+  padding: 1%;
+  margin-left: 10%;
+  margin-bottom: 3%;
+}
+
+.Question{
+   font-size: 20px;
+   padding-bottom: 2%;
+}
+
+.Option{
+  background: #2C7873;
+  height: 5%;
+  font-size: 110%;
+  border-radius: 1%;
+  color: aliceblue;
+  padding: 1%;
+  width: 20%;
+}
+
+.Option:hover{
+  background: #004445; /* if correct then 'background: lawngreen; color: black;' */
+  color: ghostwhite;  /* if wrong then 'background: indianred;' */
+}
