@@ -26,7 +26,8 @@ urlpatterns = [
     path("bugs",views.f_bugs, name = "bugs"),
     path("eventpage",views.eventpage, name = "eventpage"),
     path("addstudymaterial",views.addStudyMaterial, name = "addStudyMaterial"),
-    path("quiz",views.quiz, name = "quiz")
+    path("quiz",views.quiz, name = "quiz"),
+    path("add_students",views.add_students, name = "add_students")
 
     
 

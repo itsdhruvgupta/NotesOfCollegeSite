@@ -122,3 +122,6 @@ def addStudyMaterial(request):
 
 def quiz(request):
     return render(request, 'quiz.html')
+
+def add_students(request):
+    return render(request, 'add_students.html')
