@@ -1,3 +1,29 @@
-body{
-    background-color: black;
+#myTable{
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background: darkgray;
+}
+
+
+.myData{
+  border: 1px solid beige;
+  padding: 10px;
+}
+
+.myRow2{
+  background: lightgray;
+}
+
+.my-button{
+    width: auto;
+    padding: 5px 10px 5px 10px;
+    border: 0;
+    border-radius: 5px;
+    background: orange;
+}
+
+
+.my-button:hover{
+     box-shadow: 0 8px 8px -4px lightseagreen;
 }
